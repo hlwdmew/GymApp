@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Данные профиля участника клуба.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin", "trainer"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "NewsPost": {
+      "title": "News Post",
+      "description": "Объявления и новости клуба.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "image": { "type": "string" },
+        "authorName": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "likes": { "type": "number" },
+        "likedBy": { "type": "array", "items": { "type": "string" } },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "author": { "type": "string" },
+              "text": { "type": "string" },
+              "date": { "type": "string" }
+            }
+          }
+        },
+        "pinned": { "type": "boolean" }
+      },
+      "required": ["title", "content", "authorName"]
+    },
+    "Workout": {
+      "title": "Workout",
+      "description": "Занятия в расписании.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "time": { "type": "string" },
+        "trainerName": { "type": "string" },
+        "day": { "type": "string" },
+        "capacity": { "type": "number" },
+        "enrolled": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name", "time", "trainerName", "capacity"]
+    },
+    "WorkoutNote": {
+      "title": "Workout Note",
+      "description": "Заметка пользователя о тренировке.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "content": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "content"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Профили пользователей."
+    },
+    "/news/{postId}": {
+      "schema": "NewsPost",
+      "description": "Новости."
+    },
+    "/workouts/{workoutId}": {
+      "schema": "Workout",
+      "description": "Расписание тренировок."
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "WorkoutNote",
+      "description": "Личные заметки пользователя."
+    }
+  }
+}

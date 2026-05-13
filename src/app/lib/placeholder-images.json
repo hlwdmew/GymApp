@@ -1,0 +1,35 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "apparel-1",
+      "description": "Премиальное худи",
+      "imageUrl": "https://picsum.photos/seed/hoodie/600/600",
+      "imageHint": "gym clothing"
+    },
+    {
+      "id": "supp-1",
+      "description": "Изолят протеина",
+      "imageUrl": "https://picsum.photos/seed/whey/600/600",
+      "imageHint": "nutrition supplements"
+    },
+    {
+      "id": "acc-1",
+      "description": "Фитнес-браслет",
+      "imageUrl": "https://picsum.photos/seed/watch/600/600",
+      "imageHint": "fitness accessory"
+    },
+    {
+      "id": "news-1",
+      "description": "Открытие новой студии",
+      "imageUrl": "https://picsum.photos/seed/yoga/800/400",
+      "imageHint": "fitness club"
+    },
+    {
+      "id": "trainer-1",
+      "description": "Алексей Ривера - Тренер",
+      "imageUrl": "https://picsum.photos/seed/trainer1/300/300",
+      "imageHint": "fitness coach"
+    }
+  ]
+}

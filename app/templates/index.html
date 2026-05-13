@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FITCORE CRM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="auth-screen" class="modal">
+        <div class="auth-box">
+            <div class="logo">FIT<span>CORE</span></div>
+            <input type="text" id="auth-user" placeholder="Логин">
+            <input type="password" id="auth-pass" placeholder="Пароль">
+            <button onclick="handleAuth('login')">ВОЙТИ</button>
+            <button onclick="handleAuth('register')" class="secondary">РЕГИСТРАЦИЯ</button>
+        </div>
+    </div>
+
+    <div id="main-app" style="display:none; height:100vh; width:100vw; display:flex;">
+        <aside class="sidebar">
+            <div class="logo">FIT<span>CORE</span></div>
+            <nav style="display:flex; flex-direction:column;">
+                <button class="nav-btn active" id="btn-stats" onclick="showPage('stats-page')">Статистика</button>
+                <button class="nav-btn" id="btn-schedule" onclick="showPage('schedule')">Расписание</button>
+                <button class="nav-btn" id="btn-news-page" onclick="showPage('news')">Новости</button>
+                <button class="nav-btn" id="btn-admin" onclick="showPage('admin-panel')" style="display:none; color:#ff4444;">Админка</button>
+                <button class="nav-btn" onclick="logout()" style="margin-top:20px; opacity:0.5;">Выход</button>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="stats-page" class="page active">
+                <h1>Статистика атлета: <span id="display-name"></span></h1>
+                <div class="stat-card">
+                    <small>ПОСЕЩЕНИЯ</small>
+                    <div class="big-num" id="user-visits">0</div>
+                </div>
+            </section>
+
+            <section id="schedule" class="page">
+                <h1>Расписание</h1>
+                <div id="workout-container" class="stats-grid"></div>
+            </section>
+
+            <section id="news" class="page">
+                <h1>Новости</h1>
+                <div id="news-container"></div>
+            </section>
+
+            <section id="admin-panel" class="page">
+                <h1>Управление</h1>
+                <div class="stat-card">
+                    <h3>Новая тренировка / Новость</h3>
+                    <input type="text" id="w-title" placeholder="Тренировка" class="admin-input">
+                    <input type="text" id="w-time" placeholder="Время" class="admin-input">
+                    <input type="text" id="w-day" placeholder="День" class="admin-input">
+                    <button onclick="addWorkout()" class="admin-btn">Добавить занятие</button>
+                    <hr style="margin:20px 0; border:0; border-top:1px solid #333;">
+                    <input type="text" id="n-title" placeholder="Заголовок новости" class="admin-input">
+                    <textarea id="n-text" placeholder="Текст..." class="admin-input"></textarea>
+                    <button onclick="addNews()" class="admin-btn">Опубликовать новость</button>
+                </div>
+                <div class="stat-card" style="margin-top:20px;">
+                    <h3>Отметить визиты</h3>
+                    <div id="admin-users-list"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
