@@ -1,4 +1,4 @@
-# Zenith Fitness Hub — качалка.com
+качалка.com
 
 Премиальная система управления фитнес-клубом на базе Next.js 15, GenAI и Firebase.
 
